@@ -20,7 +20,7 @@
 <!-- [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" -->
 
 <div class="container">
-    <h2>Passenger Detail Form</h2>
+    <h2>Passenger Details Form</h2>
     <form [formGroup]="flightDetails" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label>First Name</label>
@@ -52,8 +52,8 @@
     </form>
 </div>
 <div class="container">
-    <h4>Entered Details:</h4>
     <div *ngIf="allDetails">
+        <h4>Entered Details:</h4>
         First Name: {{allDetails.firstName}},<br>
         Last Name: {{allDetails.lastName}},<br>
         email: {{allDetails.email}},<br>
