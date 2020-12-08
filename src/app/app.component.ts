@@ -22,6 +22,9 @@ export class AppComponent implements OnInit {
   flightDetails: FormGroup;
   submitted = false;
   constructor(private formBuilder: FormBuilder) { }
+  /**
+   * on init
+   */
   ngOnInit() {
     this.flightDetails = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]*$/)]],
@@ -29,6 +32,10 @@ export class AppComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
     })
   }
+  /**
+   * Determines whether submit on
+   * @returns  
+   */
   onSubmit() {
     this.submitted = true;
     console.log(this.valueRadio);
@@ -47,5 +54,6 @@ export class AppComponent implements OnInit {
 
   }
 
+  //error handling
   get f() { return this.flightDetails.controls; }
 }
