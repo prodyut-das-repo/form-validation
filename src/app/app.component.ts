@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
     if (this.flightDetails.invalid && this.valueRadio === undefined) {
       return;
     }
-    if (this.valueRadio !== undefined) {
+    if (this.flightDetails.valid && this.valueRadio !== undefined) {
       this.allDetails = {
         firstName: this.flightDetails.value.firstName,
         lastName: this.flightDetails.value.lastName,
