@@ -1,0 +1,62 @@
+<!-- <div>
+    <form [formGroup]="flightDetails" (ngSubmit)="onSubmit()">
+        <label>First Name</label>
+        <input formControlName="firstName" class="form-control"><span *ngIf="submitted && f.firstName.errors">Required
+            first name</span><br>
+        <label>Last Name</label>
+        <input formControlName="lastName" class="form-control"> <span *ngIf="submitted && f.lastName.errors">Required
+            last name</span><br>
+        <label>Email</label>
+        <input formControlName="email" type="email" class="form-control"><span
+            *ngIf="submitted && f.email.errors">Required
+            proper email address</span><br>
+        <label>Do you have any children?</label>
+        <input #radio (change)="clickRadio()" type="radio" name="radio" id="radio" value="Yes" /> Yes
+        <input #radio (change)="clickRadio()" type="radio" name="radio" id="radio" Value="No" /> No
+        <span *ngIf="submitted && valueRadio===undefined">This is Required</span><br>
+        <button type="submit">Submit</button>
+    </form>
+</div> -->
+<!-- [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" -->
+
+<div class="container">
+    <h2>Passenger Detail Form</h2>
+    <form [formGroup]="flightDetails" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>First Name</label>
+            <input formControlName="firstName" class="form-control"><span class="form-error"
+                *ngIf="submitted && f.firstName.errors">Required
+                first name</span>
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            <input formControlName="lastName" class="form-control"><span class="form-error"
+                *ngIf="submitted && f.lastName.errors">Required
+                last name</span>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input formControlName="email" type="email" class="form-control"><span class="form-error"
+                *ngIf="submitted && f.email.errors">Required
+                proper email address</span>
+        </div>
+        <div class="form-group">
+            <label>Do you have any children?</label>
+            <div class="container">
+                <input #radio (change)="clickRadio()" type="radio" name="radio" id="radio" value="Yes" /> Yes
+                <input #radio (change)="clickRadio()" type="radio" name="radio" id="radio" Value="No" /> No
+            </div>
+            <span *ngIf="submitted && valueRadio===undefined" class="form-error">This is Required</span>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<div class="container">
+    <h4>Entered Details:</h4>
+    <div *ngIf="allDetails">
+        First Name: {{allDetails.firstName}},<br>
+        Last Name: {{allDetails.lastName}},<br>
+        email: {{allDetails.email}},<br>
+        children: {{allDetails.children}}
+    </div>
+</div>
