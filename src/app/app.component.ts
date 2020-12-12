@@ -13,24 +13,30 @@ export class AppComponent implements OnInit {
     firstName: string,
     lastName: string,
     email: string,
-    children: string
+    children: string,
+    numberOfChildren: number
   };
+  clicked = false;
+  childrenIf: string;
   clickRadio() {
     this.valueRadio = this.value.nativeElement.checked;
+    this.clicked = true;
+    this.childrenIf =  this.valueRadio ? 'Yes' : 'No'
   }
+  childDetails: any[] = [];
+
+  numberOfChild: number;
   valueRadio: any;
-  flightDetails: FormGroup;
+  public flightDetails: FormGroup;
   submitted = false;
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) {
+    this.flightDetails = this.createForm();
+  }
   /**
    * on init
    */
   ngOnInit() {
-    this.flightDetails = this.formBuilder.group({
-      firstName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]*$/)]],
-      lastName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]*$/)]],
-      email: ['', [Validators.required, Validators.email]],
-    })
+
   }
   /**
    * Determines whether submit on
@@ -38,22 +44,28 @@ export class AppComponent implements OnInit {
    */
   onSubmit() {
     this.submitted = true;
-    console.log(this.valueRadio);
-
-    if (this.flightDetails.invalid && this.valueRadio === undefined) {
-      return;
-    }
-    if (this.flightDetails.valid && this.valueRadio !== undefined) {
-      this.allDetails = {
-        firstName: this.flightDetails.value.firstName,
-        lastName: this.flightDetails.value.lastName,
-        email: this.flightDetails.value.email,
-        children: this.valueRadio ? 'Yes' : 'No'
-      }
-    }
-
   }
 
+  private createForm(): FormGroup {
+    return this.formBuilder.group({
+      personalData: this.formBuilder.group({
+        firstName: [null, Validators.required],
+        lastName: [null, Validators.required],
+        email: [null, [Validators.email]]
+      })
+    });
+  }
   //error handling
   get f() { return this.flightDetails.controls; }
+
+  childDetail() {
+    this.childDetails.length = this.numberOfChild
+  }
+
+  passengerDetails(event) {
+    this.allDetails = event;
+  }
+  childrenDetails(event) {
+    this.childDetails = event;
+  }
 }
